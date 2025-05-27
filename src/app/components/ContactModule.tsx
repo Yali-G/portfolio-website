@@ -7,7 +7,7 @@ const ContactModule = () => {
             <img className='w-full h-full object-cover object-[50%_20%]' src="/prof-pic.jpeg" alt="Profile Picture" />
         </div>
         <div className="flex flex-col items-center justify-between">
-            <h1 className='header'>Yali Goldstein</h1>
+            <h1 className='header'>Yali Goldstein </h1>
             <p className='paragraph'>Software Engineer, Computer Science B.S.</p>
         </div>
             <LinkIcons/>
