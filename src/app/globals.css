@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff;
+    --intro-background: rgb(0,32,44);
+    --education-background: rgb(0,32,44, 0.95);
+    --goals-background: rgb(0,32,44, 0.90);
+    --contact-background: rgb(0,32,44, 0.85);
+    --components-background: rgb(37,56,68);
+    --header-text: #ededed;
+    --paragraph-text: rgb(156,156,156);
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1rem;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.component {
+  padding: 2rem;
+  margin: auto;;
+  background: var(--components-background);
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.contact-image {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+.contact-image img {
+  width: 40px;
+  height: auto;
+  border-radius: 0.375rem;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.contact-image img:hover {
+  background-color: gray;
+  opacity: 0.5;
+}
+
+.header {
+  font: ibm plex mono, monospace;
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--header-text);
+  text-align: center;
+}
+
+.paragraph {
+  font: ibm plex mono, monospace;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: var(--paragraph-text);
+  text-align: center;
+}
