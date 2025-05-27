@@ -1,5 +1,5 @@
 import React from 'react'
-
+import LinkIcons from './LinkIcons'
 const ContactModule = () => {
   return (
     <div className="component h-[70vh] w-[50vw] rounded-full overflow-hidden shadow-lg ">
@@ -10,23 +10,7 @@ const ContactModule = () => {
             <h1 className='header'>Yali Goldstein</h1>
             <p className='paragraph'>Software Engineer, Computer Science B.S.</p>
         </div>
-
-        <div className=" contact-image">
-            
-            <a href="https://www.linkedin.com/in/yali-goldstein/" target="_blank" rel="noopener noreferrer">
-                <img src="/linkedin.svg" alt="LinkedIn icon" />
-            </a>
-
-            <a href="mailto:goldstein.yali1@gmail.com">
-                <img src="/email.svg" alt="Email icon" />
-            </a>
-
-            <a href="https://github.com/Yali-G" target="_blank" rel="noopener noreferrer">
-                <img src="/github.svg" alt="GitHub icon" />
-            </a>
-
-        </div>
-
+            <LinkIcons/>
     </div>
   )
 }
