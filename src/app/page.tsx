@@ -10,11 +10,10 @@ import GoalsPage from "./components/GoalsPage";
 // import SkillsPage from "./components/SkillsPage";
 export default function Home() {
   return (
-    <main> <h1> Hello World </h1>
-    <Link href="/users">Users</Link>
+    <main>
     <IntroPage />
     <EducationPage />
-    <GoalsPage />
+    {/* <GoalsPage /> */}
     <ContactPage />
 
      </main>
