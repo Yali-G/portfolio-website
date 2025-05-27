@@ -4,7 +4,7 @@ const header = () => {
   return (
     <div className="flex flex-row justify-between w-[100vw] p-6">
       <LinkIcons/>
-       <div className='flex flex-row justify-across items-center gap-10'>
+       <div className='flex flex-row justify-across items-center gap-10.0'>
         <a href="https://drive.google.com/file/d/1nzzsGBrB5jxl_A27JevlmhLiA0d4Ir4b/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
                 <h2 className='paragraph'>Resume</h2>
             </a>
