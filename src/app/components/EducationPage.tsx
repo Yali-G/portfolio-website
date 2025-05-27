@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from "next/image";
 
 const EducationPage = () => {
   return (
@@ -9,7 +10,7 @@ const EducationPage = () => {
 
       <div className='component w-[60vw]'>
         <div className='flex flex-row justify-start items-center w-[90%] gap-4'>
-        <div className='w-20'><img className='h-[100%] w-[100%]' src="/ucsc-logo.png" alt="" /></div>
+        <div className='w-20'><Image className='h-[100%] w-[100%]' src="/ucsc-logo.png" alt="" /></div>
         <h1 className='title'>University of California, Santa Cruz</h1>
         </div>
         <div className='bg-black h-0.5 w-full mt-2 mb-4'/>
@@ -22,7 +23,7 @@ const EducationPage = () => {
       </div>
        <div className='component w-[60vw]'>
         <div className='flex flex-row justify-start items-center w-[90%] gap-4'>
-        <div className='w-10'><img className='h-[100%] w-[100%]' src="/fremonthigh-logo.png" alt="" /></div>
+        <div className='w-10'><Image className='h-[100%] w-[100%]' src="/fremonthigh-logo.png" alt="" /></div>
         <h1 className='title'>Fremont High School</h1>
         </div>
         <div className='bg-black h-0.5 w-full mt-2 mb-4'/>

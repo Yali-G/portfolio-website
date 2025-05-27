@@ -1,10 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
-
 import IntroPage from './components/IntroPage'
 import EducationPage from "./components/EducationPage"; 
 import ContactPage from "./components/ContactPage";
-import GoalsPage from "./components/GoalsPage";
+// import GoalsPage from "./components/GoalsPage";
 // import ExperiencePage from "./components/ExperiencePage";
 // import ProjectsPage from "./components/ProjectsPage";
 // import SkillsPage from "./components/SkillsPage";
