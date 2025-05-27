@@ -29,6 +29,7 @@ const eslintConfig = [
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
     rules: {
+      "@next/next/no-img-element": "off",
       // Your custom rules go here, if any
       // "@typescript-eslint/no-unused-expressions": "off", // Keep off for now if you need to debug
     },
