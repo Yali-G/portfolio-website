@@ -1,21 +1,43 @@
-name: Upload Website
+name: Upload Website # Changed name to reflect purpose
 
 on:
   push:
     branches:
-      - main
+      - main # Make sure this matches your main branch name
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Or 'self-hosted' if you have specific runners
+
     steps:
-      - uses: actions/checkout@master
-      - uses: jakejarvis/s3-sync-action@master
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4 # Always use specific versions of actions for stability
+
+      # Step 2: Set up Node.js environment
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4 # Use a specific version for Node.js setup
         with:
-          args: --acl public-read --follow-symlinks --delete
+          node-version: "20" # Specify your Node.js version (e.g., '18', '20')
+          cache: "npm" # Caches npm dependencies to speed up builds
+
+      # Step 3: Install Next.js dependencies
+      - name: Install dependencies
+        run: npm install # Or 'yarn install' if you use yarn
+
+      # Step 4: Build the Next.js application
+      # This command generates the 'out' directory for static export (due to next.config.js)
+      - name: Build Next.js app
+        run: npm run build
+
+      # Step 5: Sync the built 'out' directory to S3
+      - name: Deploy built app to S3
+        uses: jakejarvis/s3-sync-action@master # Use a specific version of the action
+        with:
+          args: --acl public-read --follow-symlinks --delete # --delete is important to remove old files from S3
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: "us-west-1" # optional: defaults to us-east-1
-          SOURCE_DIR: "public" # optional: defaults to entire repository
+          AWS_REGION: "us-west-1"
+          SOURCE_DIR: "out" # <--- CRUCIAL CHANGE: Upload the 'out' directory
