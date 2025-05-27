@@ -1,9 +1,7 @@
 import React from 'react'
 import Header from './Header';
-import ThemeSwitch from './ThemeSwitch';
 const IntroPage = () => {
   return (
-    // <section className=" section bg-[var(--intro-background)] flex flex-start gap-30 " data-theme="dark">
         <section className=" section bg-[var(--intro-background)] transition-all duration-300 flex flex-start gap-30" >
 
       <div>
