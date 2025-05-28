@@ -1,5 +1,7 @@
 # 🌐 Personal Portfolio Website
 
+Website can be found at: [yaligoldstein.com](https://yaligoldstein.com)
+
 This is my personal portfolio website built to showcase my work, projects, and background. It's built with modern web technologies for performance, responsiveness, and scalability.
 
 ## 🚀 Tech Stack
@@ -24,4 +26,27 @@ This is my personal portfolio website built to showcase my work, projects, and b
 3. The built site is deployed directly to an AWS S3 bucket for public access.
 
 ## 📁 Project Structure
+
+.
+├── components/ # Reusable UI components
+├── pages/ # Route-based pages
+├── public/ # Static assets
+├── styles/ # Tailwind and custom CSS
+├── .github/workflows/ # GitHub Actions CI/CD config
+├── README.md
+└── ...
+
+
+## 📦 Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Run locally
+npm run dev
+
+# Build for production
+npm run build
+
 
