@@ -2,12 +2,8 @@ import React from "react";
 
 const ProjectsPage = () => {
   return (
-    <section className="section bg-[var(--projects-background)] transition-all duration-300 flex flex-start gap-5 pb-10">
-      <div>
-        <h1 className="header">Projects</h1>
-      </div>
-
-      <div className="component w-[60vw] h-[90vh] flex flex-grow justify-start ">
+    <section className="section bg-[var(--projects-background)] transition-all duration-300 flex flex-start py-10">
+      <div className="component w-[60vw] h-[90vh] flex flex-grow justify-start gap-5 ">
         <div>
           <p className="paragraph">
             Here is a recent project of mine that implements BFS to play the
