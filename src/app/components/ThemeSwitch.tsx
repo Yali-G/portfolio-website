@@ -18,10 +18,6 @@ export function ThemeSwitch() {
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
-<<<<<<< HEAD
-
-=======
->>>>>>> development
   return (
     <Button
       variant="outline"
@@ -30,11 +26,7 @@ export function ThemeSwitch() {
       onClick={toggleTheme}
     >
       {theme === "dark" ? (
-<<<<<<< HEAD
-        <FaMoon className="h-[1.2rem] w-[1.2rem] transform transition-transform duration-300 rotate-0 scale-100" />
-=======
         <FaMoon className="transform transition-transform duration-300 rotate-0 scale-100 md:scale-200 " />
->>>>>>> development
       ) : (
         <FaSun className="transform transition-transform duration-300 rotate-180 scale-100 md:scale-200" />
       )}
