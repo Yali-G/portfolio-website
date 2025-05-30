@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const GoalsPage = () => {
   return (
@@ -7,6 +7,6 @@ const GoalsPage = () => {
       <p>This is the third section.</p> {/* No class on p */}
     </section>
   );
-}
+};
 
-export default GoalsPage
+export default GoalsPage;

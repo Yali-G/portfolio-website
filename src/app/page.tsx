@@ -1,7 +1,7 @@
-import IntroPage from './components/IntroPage'
-import EducationPage from "./components/EducationPage"; 
+import IntroPage from "./components/IntroPage";
+// import EducationPage from "./components/EducationPage";
 import ContactPage from "./components/ContactPage";
-import ProjectsPage from './components/ProjectsPage';
+import ProjectsPage from "./components/ProjectsPage";
 // import GoalsPage from "./components/GoalsPage";
 // import ExperiencePage from "./components/ExperiencePage";
 // import ProjectsPage from "./components/ProjectsPage";
@@ -9,12 +9,11 @@ import ProjectsPage from './components/ProjectsPage';
 export default function Home() {
   return (
     <main>
-    <IntroPage />
-    <ProjectsPage/>
-    {/* <EducationPage /> */}
-    {/* <GoalsPage /> */}
-    <ContactPage />
-
-     </main>
+      <IntroPage />
+      <ProjectsPage />
+      {/* <EducationPage /> */}
+      {/* <GoalsPage /> */}
+      <ContactPage />
+    </main>
   );
 }
