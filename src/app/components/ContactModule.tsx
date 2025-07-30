@@ -3,17 +3,17 @@ import LinkIcons from "./LinkIcons";
 
 const ContactModule = () => {
   return (
-    <div className="component w-[80vw] h-[50vh] md:h-[70vh] md:w-[50vw] rounded-full overflow-hidden shadow-lg flex flex-col justify-evenly">
-      <div className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] rounded-full overflow-hidden mt-4">
+<div className="bg-[var(--components-background)] rounded-lg shadow-lg w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl flex flex-col items-center gap-6 p-6 sm:p-8 md:p-10">
+  <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full overflow-hidden">
         <img
           className="w-full h-full object-cover object-[50%_20%]"
           src="/prof-pic.jpeg"
           alt="Profile Picture"
         />
       </div>
-      <div className="flex flex-col items-center justify-between mb-6 gap-3 md:gap-6">
-        <h1 className="header text-2xl md:text-5xl">Yali Goldstein </h1>
-        <p className="paragraph md:text-3xl">
+  <div className="flex flex-col items-center text-center gap-3 md:gap-4">
+    <h1 className="header text-3xl sm:text-4xl md:text-5xl">Yali Goldstein</h1>
+    <p className="paragraph text-base sm:text-lg md:text-xl">
           Software Engineer, Computer Science B.S.
         </p>
         <LinkIcons />
