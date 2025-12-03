@@ -25,6 +25,8 @@ interface SpotifyData {
   }>;
 }
 
+// Placeholder types for future integrations
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface StravaData {
   recentRuns?: Array<{
     name: string;
@@ -34,6 +36,7 @@ interface StravaData {
   }>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface SubstackData {
   recentArticles?: Array<{
     title: string;
@@ -44,8 +47,10 @@ interface SubstackData {
 
 const MetricsPage = () => {
   const [spotifyData, setSpotifyData] = useState<SpotifyData | null>(null);
-  const [stravaData, setStravaData] = useState<StravaData | null>(null);
-  const [substackData, setSubstackData] = useState<SubstackData | null>(null);
+  // Placeholder for future Strava integration - will be used when implemented
+  // const [stravaData, setStravaData] = useState<StravaData | null>(null);
+  // Placeholder for future Substack integration - will be used when implemented
+  // const [substackData, setSubstackData] = useState<SubstackData | null>(null);
   const [loading, setLoading] = useState({
     spotify: true,
     strava: true,

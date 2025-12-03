@@ -16,7 +16,7 @@ const IntroPage = () => {
             Yali Goldstein
           </h1>
           <p className="paragraph text-lg md:text-2xl lg:text-3xl">
-            Hi! I'm Yali. A software engineer interested in full stack
+            Hi! I&apos;m Yali. A software engineer interested in full stack
             development and deploying apps in the cloud using AWS.
           </p>
         </div>

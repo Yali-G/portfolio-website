@@ -7,7 +7,7 @@ export default function Home() {
         <div className="text-center">
           <h1 className="header text-3xl md:text-5xl mb-4">Welcome to My Portfolio</h1>
           <p className="paragraph text-lg md:text-2xl">
-            Use the terminal above to navigate. Type 'help' to see available commands.
+            Use the terminal above to navigate. Type &apos;help&apos; to see available commands.
           </p>
         </div>
       </div>
