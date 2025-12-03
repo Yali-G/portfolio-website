@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Strava integration
 
 import React, { useEffect, useState } from "react";
 import Navbar from "./NavBar";
