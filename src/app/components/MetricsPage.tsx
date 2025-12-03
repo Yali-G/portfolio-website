@@ -25,15 +25,74 @@ interface SpotifyData {
   }>;
 }
 
-// Placeholder types for future integrations
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface StravaData {
-  recentRuns?: Array<{
+  recentActivities?: Array<{
     name: string;
+    type: string;
     distance: number;
-    duration: number;
-    date: string;
+    distanceFormatted: string;
+    movingTime: number;
+    movingTimeFormatted: string;
+    elapsedTime: number;
+    elapsedTimeFormatted: string;
+    totalElevationGain: number;
+    elevationFormatted: string;
+    startDate: string;
+    startDateLocal: string;
+    kudosCount: number;
+    averageSpeed: number;
+    maxSpeed: number;
+    id: number;
   }>;
+  athlete?: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    profile: string;
+    city: string;
+    state: string;
+    country: string;
+  };
+  stats?: {
+    allRideTotals?: {
+      distance: number;
+      distanceFormatted: string;
+      movingTime: number;
+      movingTimeFormatted: string;
+      elevationGain: number;
+    };
+    allRunTotals?: {
+      distance: number;
+      distanceFormatted: string;
+      movingTime: number;
+      movingTimeFormatted: string;
+      elevationGain: number;
+    };
+    recentRideTotals?: {
+      distance: number;
+      distanceFormatted: string;
+      movingTime: number;
+      movingTimeFormatted: string;
+    };
+    recentRunTotals?: {
+      distance: number;
+      distanceFormatted: string;
+      movingTime: number;
+      movingTimeFormatted: string;
+    };
+    ytdRideTotals?: {
+      distance: number;
+      distanceFormatted: string;
+      movingTime: number;
+      movingTimeFormatted: string;
+    };
+    ytdRunTotals?: {
+      distance: number;
+      distanceFormatted: string;
+      movingTime: number;
+      movingTimeFormatted: string;
+    };
+  };
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -47,8 +106,7 @@ interface SubstackData {
 
 const MetricsPage = () => {
   const [spotifyData, setSpotifyData] = useState<SpotifyData | null>(null);
-  // Placeholder for future Strava integration - will be used when implemented
-  // const [stravaData, setStravaData] = useState<StravaData | null>(null);
+  const [stravaData, setStravaData] = useState<StravaData | null>(null);
   // Placeholder for future Substack integration - will be used when implemented
   // const [substackData, setSubstackData] = useState<SubstackData | null>(null);
   const [loading, setLoading] = useState({
@@ -87,10 +145,29 @@ const MetricsPage = () => {
     fetchSpotifyData();
   }, []);
 
-  // Placeholder for Strava data fetching
+  // Fetch Strava data
   useEffect(() => {
-    // TODO: Implement Strava API integration
-    setLoading((prev) => ({ ...prev, strava: false }));
+    const fetchStravaData = async () => {
+      try {
+        const apiUrl = getApiUrl("api/strava");
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error("Failed to fetch Strava data");
+        }
+        const data = await response.json();
+        setStravaData(data);
+        setLoading((prev) => ({ ...prev, strava: false }));
+      } catch (error) {
+        console.error("Error fetching Strava data:", error);
+        setErrors((prev) => ({
+          ...prev,
+          strava: "Unable to load Strava data. Please check your API configuration.",
+        }));
+        setLoading((prev) => ({ ...prev, strava: false }));
+      }
+    };
+
+    fetchStravaData();
   }, []);
 
   // Placeholder for Substack data fetching
@@ -221,15 +298,183 @@ const MetricsPage = () => {
             )}
           </div>
 
-          {/* Strava Section - Placeholder */}
-          <div className="bg-[var(--components-background)] rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700 opacity-60">
+          {/* Strava Section */}
+          <div className="bg-[var(--components-background)] rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
             <div className="flex items-center gap-3 mb-4">
               <Activity className="w-6 h-6" />
               <h2 className="header text-2xl md:text-3xl">Strava</h2>
             </div>
-            <div className="paragraph">
-              Strava integration coming soon...
-            </div>
+
+            {loading.strava ? (
+              <div className="paragraph">Loading Strava data...</div>
+            ) : errors.strava ? (
+              <div className="paragraph text-red-500">{errors.strava}</div>
+            ) : stravaData ? (
+              <div className="space-y-6">
+                {/* Athlete Info */}
+                {stravaData.athlete && (
+                  <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
+                    <div className="flex items-center gap-4">
+                      {stravaData.athlete.profile && (
+                        <img
+                          src={stravaData.athlete.profile}
+                          alt={`${stravaData.athlete.firstName} ${stravaData.athlete.lastName}`}
+                          className="w-16 h-16 rounded-full"
+                        />
+                      )}
+                      <div>
+                        <p className="paragraph font-semibold">
+                          {stravaData.athlete.firstName} {stravaData.athlete.lastName}
+                        </p>
+                        {(stravaData.athlete.city || stravaData.athlete.state || stravaData.athlete.country) && (
+                          <p className="paragraph text-sm text-gray-600 dark:text-gray-400">
+                            {[stravaData.athlete.city, stravaData.athlete.state, stravaData.athlete.country]
+                              .filter(Boolean)
+                              .join(", ")}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Stats Summary */}
+                {stravaData.stats && (
+                  <div>
+                    <h3 className="paragraph text-lg font-semibold mb-3">
+                      Statistics
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {stravaData.stats.ytdRunTotals && (
+                        <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                          <p className="paragraph text-sm text-gray-600 dark:text-gray-400 mb-1">
+                            Year to Date - Running
+                          </p>
+                          <p className="paragraph font-semibold text-lg">
+                            {stravaData.stats.ytdRunTotals.distanceFormatted}
+                          </p>
+                          <p className="paragraph text-xs text-gray-500">
+                            {stravaData.stats.ytdRunTotals.movingTimeFormatted}
+                          </p>
+                        </div>
+                      )}
+                      {stravaData.stats.ytdRideTotals && (
+                        <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                          <p className="paragraph text-sm text-gray-600 dark:text-gray-400 mb-1">
+                            Year to Date - Cycling
+                          </p>
+                          <p className="paragraph font-semibold text-lg">
+                            {stravaData.stats.ytdRideTotals.distanceFormatted}
+                          </p>
+                          <p className="paragraph text-xs text-gray-500">
+                            {stravaData.stats.ytdRideTotals.movingTimeFormatted}
+                          </p>
+                        </div>
+                      )}
+                      {stravaData.stats.recentRunTotals && (
+                        <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                          <p className="paragraph text-sm text-gray-600 dark:text-gray-400 mb-1">
+                            Recent - Running
+                          </p>
+                          <p className="paragraph font-semibold text-lg">
+                            {stravaData.stats.recentRunTotals.distanceFormatted}
+                          </p>
+                          <p className="paragraph text-xs text-gray-500">
+                            {stravaData.stats.recentRunTotals.movingTimeFormatted}
+                          </p>
+                        </div>
+                      )}
+                      {stravaData.stats.recentRideTotals && (
+                        <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                          <p className="paragraph text-sm text-gray-600 dark:text-gray-400 mb-1">
+                            Recent - Cycling
+                          </p>
+                          <p className="paragraph font-semibold text-lg">
+                            {stravaData.stats.recentRideTotals.distanceFormatted}
+                          </p>
+                          <p className="paragraph text-xs text-gray-500">
+                            {stravaData.stats.recentRideTotals.movingTimeFormatted}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Recent Activities */}
+                {stravaData.recentActivities &&
+                  stravaData.recentActivities.length > 0 && (
+                    <div>
+                      <h3 className="paragraph text-lg font-semibold mb-3">
+                        Recent Activities
+                      </h3>
+                      <div className="space-y-3">
+                        {stravaData.recentActivities.slice(0, 5).map(
+                          (activity, index) => (
+                            <div
+                              key={activity.id || index}
+                              className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                            >
+                              <div className="flex justify-between items-start mb-2">
+                                <div className="flex-1">
+                                  <p className="paragraph font-semibold">
+                                    {activity.name}
+                                  </p>
+                                  <p className="paragraph text-sm text-gray-600 dark:text-gray-400">
+                                    {activity.type}
+                                  </p>
+                                </div>
+                                <p className="paragraph text-xs text-gray-500">
+                                  {new Date(
+                                    activity.startDateLocal
+                                  ).toLocaleDateString()}
+                                </p>
+                              </div>
+                              <div className="grid grid-cols-3 gap-4 mt-3 text-sm">
+                                <div>
+                                  <p className="paragraph text-gray-600 dark:text-gray-400 text-xs">
+                                    Distance
+                                  </p>
+                                  <p className="paragraph font-semibold">
+                                    {activity.distanceFormatted}
+                                  </p>
+                                </div>
+                                <div>
+                                  <p className="paragraph text-gray-600 dark:text-gray-400 text-xs">
+                                    Time
+                                  </p>
+                                  <p className="paragraph font-semibold">
+                                    {activity.movingTimeFormatted}
+                                  </p>
+                                </div>
+                                {activity.totalElevationGain > 0 && (
+                                  <div>
+                                    <p className="paragraph text-gray-600 dark:text-gray-400 text-xs">
+                                      Elevation
+                                    </p>
+                                    <p className="paragraph font-semibold">
+                                      {activity.elevationFormatted}
+                                    </p>
+                                  </div>
+                                )}
+                              </div>
+                              {activity.kudosCount > 0 && (
+                                <p className="paragraph text-xs text-gray-500 mt-2">
+                                  ❤️ {activity.kudosCount} kudos
+                                </p>
+                              )}
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+              </div>
+            ) : (
+              <div className="paragraph">
+                No Strava data available. Please configure your API keys.
+              </div>
+            )}
           </div>
 
           {/* Substack Section - Placeholder */}
