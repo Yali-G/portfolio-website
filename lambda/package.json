@@ -1,0 +1,13 @@
+{
+  "name": "spotify-lambda-functions",
+  "version": "1.0.0",
+  "description": "Lambda functions for Spotify API integration",
+  "main": "index.js",
+  "scripts": {
+    "package": "cd .. && zip -r lambda/spotify-api.zip lambda/spotify-api.js && zip -r lambda/spotify-callback.zip lambda/spotify-callback.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
